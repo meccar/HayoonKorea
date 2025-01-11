@@ -1,0 +1,101 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.0.3",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "HayoonKorea.Application": {
+      "path": "src/HayoonKorea.Application/HayoonKorea.Application.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.Application.Tests": {
+      "path": "test/HayoonKorea.Application.Tests/HayoonKorea.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "HayoonKorea.Domain.Shared": {
+      "path": "src/HayoonKorea.Domain.Shared/HayoonKorea.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.Application.Contracts": {
+      "path": "src/HayoonKorea.Application.Contracts/HayoonKorea.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.HttpApi": {
+      "path": "src/HayoonKorea.HttpApi/HayoonKorea.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.HttpApi.Client": {
+      "path": "src/HayoonKorea.HttpApi.Client/HayoonKorea.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.Web": {
+      "path": "src/HayoonKorea.Web/HayoonKorea.Web.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.Web.Tests": {
+      "path": "test/HayoonKorea.Web.Tests/HayoonKorea.Web.Tests.abppkg",
+      "folder": "test"
+    },
+    "HayoonKorea.EntityFrameworkCore.Tests": {
+      "path": "test/HayoonKorea.EntityFrameworkCore.Tests/HayoonKorea.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "HayoonKorea.EntityFrameworkCore": {
+      "path": "src/HayoonKorea.EntityFrameworkCore/HayoonKorea.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.TestBase": {
+      "path": "test/HayoonKorea.TestBase/HayoonKorea.TestBase.abppkg",
+      "folder": "test"
+    },
+    "HayoonKorea.Domain.Tests": {
+      "path": "test/HayoonKorea.Domain.Tests/HayoonKorea.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "HayoonKorea.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/HayoonKorea.HttpApi.Client.ConsoleTestApp/HayoonKorea.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "HayoonKorea.DbMigrator": {
+      "path": "src/HayoonKorea.DbMigrator/HayoonKorea.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "HayoonKorea.Domain": {
+      "path": "src/HayoonKorea.Domain/HayoonKorea.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

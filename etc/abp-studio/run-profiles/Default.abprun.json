@@ -1,0 +1,13 @@
+﻿{
+  "applications": {
+    "HayoonKorea.Web": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44324",
+      "path": "../../../src/HayoonKorea.Web/HayoonKorea.Web.csproj",
+      "kubernetesService": ".*-web$",
+      "execution": {
+        "order": 2
+      }
+    }
+  }
+}
