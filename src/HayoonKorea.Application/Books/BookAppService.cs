@@ -1,69 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using HayoonKorea.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using System.Linq.Dynamic.Core;
 
 namespace HayoonKorea.Books;
 
 [Authorize(HayoonKoreaPermissions.Books.Default)]
-public class BookAppService : ApplicationService, IBookAppService
+public class BookAppService :
+    CrudAppService<
+        Book, //The Book entity
+        BookDto, //Used to show books
+        Guid, //Primary key of the book entity
+        PagedAndSortedResultRequestDto, //Used for paging/sorting
+        CreateUpdateBookDto>, //Used to create/update a book
+    IBookAppService //implement the IBookAppService
 {
-    private readonly IRepository<Book, Guid> _repository;
-
-    public BookAppService(IRepository<Book, Guid> repository)
+    public BookAppService(IRepository<Book, Guid> repository) : base(repository)
     {
-        _repository = repository;
-    }
-
-    public async Task<BookDto> GetAsync(Guid id)
-    {
-        var book = await _repository.GetAsync(id);
-        return ObjectMapper.Map<Book, BookDto>(book);
-    }
-
-    public async Task<PagedResultDto<BookDto>> GetListAsync(PagedAndSortedResultRequestDto input)
-    {
-        var queryable = await _repository.GetQueryableAsync();
-        var query = queryable
-            .OrderBy(input.Sorting ?? "Name")
-            .Skip(input.SkipCount)
-            .Take(input.MaxResultCount);
-
-        var books = await AsyncExecuter.ToListAsync(query);
-        var totalCount = await AsyncExecuter.CountAsync(queryable);
-
-        return new PagedResultDto<BookDto>(
-            totalCount,
-            ObjectMapper.Map<List<Book>, List<BookDto>>(books)
-        );
-    }
-
-    [Authorize(HayoonKoreaPermissions.Books.Create)]
-    public async Task<BookDto> CreateAsync(CreateUpdateBookDto input)
-    {
-        var book = ObjectMapper.Map<CreateUpdateBookDto, Book>(input);
-        await _repository.InsertAsync(book);
-        return ObjectMapper.Map<Book, BookDto>(book);
-    }
-
-    [Authorize(HayoonKoreaPermissions.Books.Edit)]
-    public async Task<BookDto> UpdateAsync(Guid id, CreateUpdateBookDto input)
-    {
-        var book = await _repository.GetAsync(id);
-        ObjectMapper.Map(input, book);
-        await _repository.UpdateAsync(book);
-        return ObjectMapper.Map<Book, BookDto>(book);
-    }
-
-    [Authorize(HayoonKoreaPermissions.Books.Delete)]
-    public async Task DeleteAsync(Guid id)
-    {
-        await _repository.DeleteAsync(id);
     }
 }
