@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace HayoonKorea.Migrations
 {
     [DbContext(typeof(HayoonKoreaDbContext))]
-    [Migration("20250111120841_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250116033138_Created_Database")]
+    partial class Created_Database
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace HayoonKorea.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("HayoonKorea.Books.Book", b =>
+            modelBuilder.Entity("HayoonKorea.Phones.Phone", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("char(36)");
@@ -76,7 +76,7 @@ namespace HayoonKorea.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppBooks", (string)null);
+                    b.ToTable("AppPhones", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

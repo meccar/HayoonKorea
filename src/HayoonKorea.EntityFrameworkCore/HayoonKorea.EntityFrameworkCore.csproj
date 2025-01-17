@@ -34,4 +34,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Brands\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Phones\" />
+  </ItemGroup>
+
 </Project>

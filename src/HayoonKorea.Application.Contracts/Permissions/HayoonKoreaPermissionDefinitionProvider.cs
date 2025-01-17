@@ -9,14 +9,12 @@ public class HayoonKoreaPermissionDefinitionProvider : PermissionDefinitionProvi
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var myGroup = context.AddGroup(HayoonKoreaPermissions.GroupName);
+        var hayoonKoreaGroup = context.AddGroup(HayoonKoreaPermissions.GroupName, L("Permission:HayoonKorea"));
 
-        var booksPermission = myGroup.AddPermission(HayoonKoreaPermissions.Books.Default, L("Permission:Books"));
-        booksPermission.AddChild(HayoonKoreaPermissions.Books.Create, L("Permission:Books.Create"));
-        booksPermission.AddChild(HayoonKoreaPermissions.Books.Edit, L("Permission:Books.Edit"));
-        booksPermission.AddChild(HayoonKoreaPermissions.Books.Delete, L("Permission:Books.Delete"));
-        //Define your own permissions here. Example:
-        //myGroup.AddPermission(HayoonKoreaPermissions.MyPermission1, L("Permission:MyPermission1"));
+        var phonesPermission = hayoonKoreaGroup.AddPermission(HayoonKoreaPermissions.Phones.Default, L("Permission:Phones"));
+        phonesPermission.AddChild(HayoonKoreaPermissions.Phones.Create, L("Permission:Phones.Create"));
+        phonesPermission.AddChild(HayoonKoreaPermissions.Phones.Edit, L("Permission:Phones.Edit"));
+        phonesPermission.AddChild(HayoonKoreaPermissions.Phones.Delete, L("Permission:Phones.Delete"));
     }
 
     private static LocalizableString L(string name)

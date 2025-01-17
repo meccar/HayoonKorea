@@ -4,6 +4,7 @@ using HayoonKorea.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace HayoonKorea.Migrations
 {
     [DbContext(typeof(HayoonKoreaDbContext))]
-    partial class HayoonKoreaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250117015735_Brand")]
+    partial class Brand
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,6 +104,9 @@ namespace HayoonKorea.Migrations
                     b.Property<Guid>("BrandId")
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid?>("BrandId1")
+                        .HasColumnType("char(36)");
+
                     b.PrimitiveCollection<string>("ColorOptions")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -128,8 +134,8 @@ namespace HayoonKorea.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("DeletionTime");
 
-                    b.Property<float>("Depth")
-                        .HasColumnType("float");
+                    b.Property<int>("Depth")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -151,8 +157,8 @@ namespace HayoonKorea.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<float>("Height")
-                        .HasColumnType("float");
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
 
                     b.PrimitiveCollection<string>("Images")
                         .IsRequired()
@@ -199,9 +205,6 @@ namespace HayoonKorea.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Ram")
-                        .HasColumnType("int");
-
                     b.Property<string>("Rear")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -234,8 +237,8 @@ namespace HayoonKorea.Migrations
                     b.Property<bool>("Waterproof")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("Width")
-                        .HasColumnType("float");
+                    b.Property<int>("Width")
+                        .HasColumnType("int");
 
                     b.Property<string>("Wifi")
                         .IsRequired()
@@ -244,9 +247,14 @@ namespace HayoonKorea.Migrations
                     b.Property<bool>("WirelessCharging")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<int>("ram")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
+
+                    b.HasIndex("BrandId1");
 
                     b.ToTable("AppPhones", (string)null);
                 });
@@ -1983,6 +1991,10 @@ namespace HayoonKorea.Migrations
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("HayoonKorea.Brands.Brand", null)
+                        .WithMany("Phones")
+                        .HasForeignKey("BrandId1");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
@@ -2125,6 +2137,11 @@ namespace HayoonKorea.Migrations
                     b.HasOne("Volo.Abp.OpenIddict.Authorizations.OpenIddictAuthorization", null)
                         .WithMany()
                         .HasForeignKey("AuthorizationId");
+                });
+
+            modelBuilder.Entity("HayoonKorea.Brands.Brand", b =>
+                {
+                    b.Navigation("Phones");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

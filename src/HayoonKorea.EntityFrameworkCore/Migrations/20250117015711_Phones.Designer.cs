@@ -4,6 +4,7 @@ using HayoonKorea.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace HayoonKorea.Migrations
 {
     [DbContext(typeof(HayoonKoreaDbContext))]
-    partial class HayoonKoreaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250117015711_Phones")]
+    partial class Phones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,68 +26,6 @@ namespace HayoonKorea.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
-
-            modelBuilder.Entity("HayoonKorea.Brands.Brand", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("DeleterId");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("DeletionTime");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false)
-                        .HasColumnName("IsDeleted");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("char(36)")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<string>("Logo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppBrands", (string)null);
-                });
 
             modelBuilder.Entity("HayoonKorea.Phones.Phone", b =>
                 {
@@ -128,8 +69,8 @@ namespace HayoonKorea.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("DeletionTime");
 
-                    b.Property<float>("Depth")
-                        .HasColumnType("float");
+                    b.Property<int>("Depth")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -151,8 +92,8 @@ namespace HayoonKorea.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<float>("Height")
-                        .HasColumnType("float");
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
 
                     b.PrimitiveCollection<string>("Images")
                         .IsRequired()
@@ -199,9 +140,6 @@ namespace HayoonKorea.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Ram")
-                        .HasColumnType("int");
-
                     b.Property<string>("Rear")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -234,8 +172,8 @@ namespace HayoonKorea.Migrations
                     b.Property<bool>("Waterproof")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("Width")
-                        .HasColumnType("float");
+                    b.Property<int>("Width")
+                        .HasColumnType("int");
 
                     b.Property<string>("Wifi")
                         .IsRequired()
@@ -244,9 +182,10 @@ namespace HayoonKorea.Migrations
                     b.Property<bool>("WirelessCharging")
                         .HasColumnType("tinyint(1)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("ram")
+                        .HasColumnType("int");
 
-                    b.HasIndex("BrandId");
+                    b.HasKey("Id");
 
                     b.ToTable("AppPhones", (string)null);
                 });
@@ -1974,15 +1913,6 @@ namespace HayoonKorea.Migrations
                         .IsUnique();
 
                     b.ToTable("AbpSettingDefinitions", (string)null);
-                });
-
-            modelBuilder.Entity("HayoonKorea.Phones.Phone", b =>
-                {
-                    b.HasOne("HayoonKorea.Brands.Brand", null)
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>

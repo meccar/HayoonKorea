@@ -1,5 +1,5 @@
 using AutoMapper;
-using HayoonKorea.Books;
+using HayoonKorea.Phones;
 
 namespace HayoonKorea;
 
@@ -7,8 +7,8 @@ public class HayoonKoreaApplicationAutoMapperProfile : Profile
 {
     public HayoonKoreaApplicationAutoMapperProfile()
     {
-        CreateMap<Book, BookDto>();
-        CreateMap<CreateUpdateBookDto, Book>();
+        CreateMap<Phone, PhoneDto>();
+        CreateMap<CreateUpdatePhoneDto, Phone>();
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */

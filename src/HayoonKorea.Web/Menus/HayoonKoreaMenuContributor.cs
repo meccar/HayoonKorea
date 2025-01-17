@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using HayoonKorea.Localization;
 using HayoonKorea.Permissions;
-using HayoonKorea.MultiTenancy;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
@@ -49,16 +48,22 @@ public class HayoonKoreaMenuContributor : IMenuContributor
     
         context.Menu.AddItem(
             new ApplicationMenuItem(
-                "BooksStore",
+                "PhonesStore",
                 l["Menu:HayoonKorea"],
-                icon: "fa fa-book"
+                icon: "fa fa-phone"
+            ).AddItem(
+                new ApplicationMenuItem(
+                    "PhonesStore.Brands",
+                    l["Menu:Brands"],
+                    url: "/Brands"
+                ).RequirePermissions(HayoonKoreaPermissions.Phones.Default) 
             ).AddItem(
             new ApplicationMenuItem(
-                "BooksStore.Books",
-                l["Menu:Books"],
-                url: "/Books"
-                ).RequirePermissions(HayoonKoreaPermissions.Books.Default) 
-            )
+                "PhonesStore.Phones",
+                l["Menu:Phones"],
+                url: "/Phones"
+                ) 
+            ).RequirePermissions(HayoonKoreaPermissions.Phones.Default)
         );
         
         return Task.CompletedTask;

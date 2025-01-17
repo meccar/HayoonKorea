@@ -49,7 +49,10 @@ public class HayoonKoreaEntityFrameworkCoreModule : AbpModule
         {
                 /* The main point to change your DBMS.
                  * See also HayoonKoreaDbContextFactory for EF Core tooling. */
-            options.UseMySQL();
+                options.UseMySQL(builder =>
+                {
+                    builder.TranslateParameterizedCollectionsToConstants();
+                });
         });
         
     }

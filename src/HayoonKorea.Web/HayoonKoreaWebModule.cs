@@ -148,9 +148,9 @@ public class HayoonKoreaWebModule : AbpModule
         
         Configure<RazorPagesOptions>(options =>
         {
-            options.Conventions.AuthorizePage("/Books/Index", HayoonKoreaPermissions.Books.Default);
-            options.Conventions.AuthorizePage("/Books/CreateModal", HayoonKoreaPermissions.Books.Create);
-            options.Conventions.AuthorizePage("/Books/EditModal", HayoonKoreaPermissions.Books.Edit);
+            options.Conventions.AuthorizePage("/Phones/Index", HayoonKoreaPermissions.Phones.Default);
+            options.Conventions.AuthorizePage("/Phones/CreateModal", HayoonKoreaPermissions.Phones.Create);
+            options.Conventions.AuthorizePage("/Phones/EditModal", HayoonKoreaPermissions.Phones.Edit);
         });
     }
 

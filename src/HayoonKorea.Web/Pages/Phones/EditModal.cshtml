@@ -1,6 +1,6 @@
 ﻿@page
 @using HayoonKorea.Localization
-@using HayoonKorea.Web.Pages.Books
+@using HayoonKorea.Web.Pages.Phones
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
 @model EditModalModel
@@ -8,7 +8,7 @@
 @{
     Layout = null;
 }
-<abp-dynamic-form abp-model="Book" asp-page="/Books/EditModal">
+<abp-dynamic-form abp-model="Phone" asp-page="/Phones/EditModal">
     <abp-modal>
         <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
         <abp-modal-body>

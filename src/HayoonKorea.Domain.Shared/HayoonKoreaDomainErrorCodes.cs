@@ -2,5 +2,5 @@
 
 public static class HayoonKoreaDomainErrorCodes
 {
-    /* You can add your business exception error codes here, as constants */
+    public const string BrandAlreadyExists = "HayoonKorea:00001";
 }

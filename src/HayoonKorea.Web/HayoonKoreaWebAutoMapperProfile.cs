@@ -1,5 +1,5 @@
 using AutoMapper;
-using HayoonKorea.Books;
+using HayoonKorea.Phones;
 
 namespace HayoonKorea.Web;
 
@@ -7,7 +7,7 @@ public class HayoonKoreaWebAutoMapperProfile : Profile
 {
     public HayoonKoreaWebAutoMapperProfile()
     {
-        CreateMap<BookDto, CreateUpdateBookDto>();
+        CreateMap<PhoneDto, CreateUpdatePhoneDto>();
         
         //Define your object mappings here, for the Web project
     }

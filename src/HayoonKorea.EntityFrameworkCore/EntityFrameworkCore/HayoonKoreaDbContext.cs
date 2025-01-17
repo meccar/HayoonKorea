@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
-using HayoonKorea.Books;
+using HayoonKorea.Brands;
+using HayoonKorea.Phones;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -24,7 +25,8 @@ public class HayoonKoreaDbContext :
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
-    public DbSet<Book> Books { get; set; }
+    public DbSet<Phone> Phones { get; set; }
+    public DbSet<Brand> Brands { get; set; }
 
     #region Entities from the modules
 
@@ -72,21 +74,24 @@ public class HayoonKoreaDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureBlobStoring();
         
-        builder.Entity<Book>(b =>
+        builder.Entity<Phone>(b =>
         {
-            b.ToTable(HayoonKoreaConsts.DbTablePrefix + "Books",
+            b.ToTable(HayoonKoreaConsts.DbTablePrefix + "Phones",
                 HayoonKoreaConsts.DbSchema);
-            b.ConfigureByConvention(); //auto configure for the base class props
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            b.HasOne<Brand>()
+                .WithMany()
+                .HasForeignKey(p => p.BrandId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        builder.Entity<Brand>(b =>
+        {
+            b.ToTable(HayoonKoreaConsts.DbTablePrefix + "Brands",
+                HayoonKoreaConsts.DbSchema);
+            b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
         });
-        
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(HayoonKoreaConsts.DbTablePrefix + "YourEntities", HayoonKoreaConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
     }
 }

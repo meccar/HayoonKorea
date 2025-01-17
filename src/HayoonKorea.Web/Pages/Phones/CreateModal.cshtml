@@ -1,16 +1,15 @@
 ﻿@page
 @using HayoonKorea.Localization
-@using HayoonKorea.Web.Pages.Books
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
-@model CreateModalModel
+@model HayoonKorea.Web.Pages.Phones.CreateModalModel
 @inject IStringLocalizer<HayoonKoreaResource> L
 @{
     Layout = null;
 }
-<abp-dynamic-form abp-model="Book" asp-page="/Books/CreateModal">
+<abp-dynamic-form abp-model="Phone" asp-page="/Phones/CreateModal">
     <abp-modal>
-        <abp-modal-header title="@L["NewBook"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["NewPhone"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-form-content />
         </abp-modal-body>
